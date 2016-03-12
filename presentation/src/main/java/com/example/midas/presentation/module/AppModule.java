@@ -3,6 +3,11 @@ package com.example.midas.presentation.module;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.midas.data.repository.UserDataRepository;
+import com.example.midas.domain.executor.PostThread;
+import com.example.midas.domain.repository.User_InterfaceRepository;
+import com.example.midas.presentation.ThreadUI;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -24,9 +29,13 @@ public class AppModule {
         return this.application;
     }
 
-    @Provides
-    @Singleton
-    Application providesApplication() {
-        return application;
+    @Provides @Singleton
+    PostThread proviedPostThread(ThreadUI threadUI) {
+        return threadUI;
+    }
+
+    @Provides @Singleton
+    User_InterfaceRepository proviedUser_InterfaceRepository(UserDataRepository userDataRepository) {
+        return userDataRepository;
     }
 }

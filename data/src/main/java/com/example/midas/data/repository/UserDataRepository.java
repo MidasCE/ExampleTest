@@ -1,10 +1,14 @@
-package com.example.midas.data;
+package com.example.midas.data.repository;
 
+import com.example.midas.data.entity.mapper.EntityUserMapper;
+import com.example.midas.data.entity.mapper.JsonUserMapper;
 import com.example.midas.domain.User;
 import com.example.midas.domain.repository.User_InterfaceRepository;
 
 import java.io.IOException;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -18,11 +22,21 @@ import rx.schedulers.Schedulers;
  * Created by Midas on 11/3/2559.
  */
 public class UserDataRepository implements User_InterfaceRepository {
+    private final  JsonUserMapper jsonUserMapper;
+    private final EntityUserMapper entityUserMapper;
+
+    @Inject
+    public UserDataRepository(JsonUserMapper jsonUserMapper,
+                              EntityUserMapper entityUserMapper) {
+        this.jsonUserMapper = jsonUserMapper;
+        this.entityUserMapper = entityUserMapper;
+    }
+
     @Override
     public Observable<List<User>> users() {
-        Observable<List<User>> fetchFromGoogle = Observable.create(new Observable.OnSubscribe<String>() {
+        Observable<List<User>> fetchFromApi = Observable.create(new Observable.OnSubscribe<List<User>>() {
             @Override
-            public void call(Subscriber<? super String> subscriber) {
+            public void call(Subscriber<? super List<User>> subscriber) {
                 try {
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
@@ -32,7 +46,7 @@ public class UserDataRepository implements User_InterfaceRepository {
                     try {
                         Response response = client.newCall(request).execute();
 
-                        subscriber.onNext(response.body().string()); // Emit the contents of the URL
+                        subscriber.onNext(entityUserMapper.transform(jsonUserMapper.transformUserEntityCollection(response.body().string()))); // Emit the contents of the URL
                         subscriber.onCompleted(); // Nothing more to emit
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -42,6 +56,10 @@ public class UserDataRepository implements User_InterfaceRepository {
                 }
             }
         });
-        return fetchFromGoogle;
+        return fetchFromApi;
+    }
+
+    private int randInt(int min, int max) {
+        return min + (int)(Math.random() * ((max - min) + 1));
     }
 }

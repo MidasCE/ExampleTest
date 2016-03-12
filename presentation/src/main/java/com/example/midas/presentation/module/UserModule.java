@@ -20,16 +20,9 @@ public class UserModule {
     }
 
     @Provides @ActivityScope @Named("userList")
-    UseCase provideUserListInteractorUseCase(
+    UseCase provideGetUserListUseCase(
             GetUserList getUserList) {
         return getUserList;
-    }
-
-    @Provides
-    @ActivityScope
-    UserListPresenter providesUserListPresenter(){
-        UserListPresenter userListPresenter = new UserListPresenter();
-        return userListPresenter;
     }
 }
 

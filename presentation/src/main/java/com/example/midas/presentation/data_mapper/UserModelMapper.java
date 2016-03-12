@@ -12,9 +12,9 @@ import javax.inject.Inject;
 /**
  * Created by Midas on 11/3/2559.
  */
-public class usermodel_mapper {
+public class UserModelMapper {
     @Inject
-    public usermodel_mapper() {}
+    public UserModelMapper() {}
 
     /**
      * Transform a {@link User} into an {@link UserModel}.

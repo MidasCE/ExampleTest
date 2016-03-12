@@ -1,3 +1,5 @@
+package com.example.midas.presentation;
+
 import com.example.midas.domain.executor.PostThread;
 
 import javax.inject.Inject;

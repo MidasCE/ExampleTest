@@ -3,6 +3,8 @@ package com.example.midas.presentation.components;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.midas.domain.executor.PostThread;
+import com.example.midas.domain.repository.User_InterfaceRepository;
 import com.example.midas.presentation.module.AppModule;
 import com.example.midas.presentation.view.activity.BaseActivity;
 
@@ -17,6 +19,7 @@ import dagger.Component;
 @Component(modules = AppModule.class)
 public interface AppComponent {
     void inject(BaseActivity baseActivity);
-    Application application();
     Context context();
+    PostThread postThread();
+    User_InterfaceRepository userRepository();
 }

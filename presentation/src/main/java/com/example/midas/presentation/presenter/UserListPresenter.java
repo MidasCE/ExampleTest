@@ -6,24 +6,14 @@ import com.example.midas.domain.User;
 import com.example.midas.domain.interactor.BaseSubscriber;
 import com.example.midas.domain.interactor.UseCase;
 import com.example.midas.presentation.ActivityScope;
-import com.example.midas.presentation.data_mapper.usermodel_mapper;
+import com.example.midas.presentation.data_mapper.UserModelMapper;
 import com.example.midas.presentation.view.UserListView;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Midas on 4/3/2559.
@@ -33,10 +23,10 @@ public class UserListPresenter implements Presenter{
 
     private UserListView userviewListView;
     private final UseCase getUserListUseCase;
-    private final usermodel_mapper userModelMapper;
+    private final UserModelMapper userModelMapper;
 
     @Inject
-    public UserListPresenter(@Named("userList") UseCase getUserListUseCase,usermodel_mapper userModelMapper) {
+    public UserListPresenter(@Named("userList") UseCase getUserListUseCase,UserModelMapper userModelMapper) {
         this.getUserListUseCase = getUserListUseCase;
         this.userModelMapper = userModelMapper;
     }
@@ -99,7 +89,4 @@ public class UserListPresenter implements Presenter{
         }
     }
 
-    private int randInt(int min, int max) {
-        return min + (int)(Math.random() * ((max - min) + 1));
-    }
 }
