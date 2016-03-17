@@ -3,7 +3,7 @@ package com.example.midas.data.repository;
 import com.example.midas.data.entity.mapper.EntityUserMapper;
 import com.example.midas.data.entity.mapper.JsonUserMapper;
 import com.example.midas.domain.User;
-import com.example.midas.domain.repository.User_InterfaceRepository;
+import com.example.midas.domain.repository.UserInterfaceRepository;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,13 +15,11 @@ import okhttp3.Request;
 import okhttp3.Response;
 import rx.Observable;
 import rx.Subscriber;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Midas on 11/3/2559.
  */
-public class UserDataRepository implements User_InterfaceRepository {
+public class UserDataRepository implements UserInterfaceRepository {
     private final  JsonUserMapper jsonUserMapper;
     private final EntityUserMapper entityUserMapper;
 

@@ -5,7 +5,7 @@ import android.content.Context;
 
 import com.example.midas.data.repository.UserDataRepository;
 import com.example.midas.domain.executor.PostThread;
-import com.example.midas.domain.repository.User_InterfaceRepository;
+import com.example.midas.domain.repository.UserInterfaceRepository;
 import com.example.midas.presentation.ThreadUI;
 
 import javax.inject.Singleton;
@@ -35,7 +35,7 @@ public class AppModule {
     }
 
     @Provides @Singleton
-    User_InterfaceRepository proviedUser_InterfaceRepository(UserDataRepository userDataRepository) {
+    UserInterfaceRepository proviedUser_InterfaceRepository(UserDataRepository userDataRepository) {
         return userDataRepository;
     }
 }

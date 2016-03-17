@@ -9,6 +9,6 @@ import rx.Observable;
 /**
  * Created by Midas on 11/3/2559.
  */
-public interface User_InterfaceRepository {
+public interface UserInterfaceRepository {
     Observable<List<User>> users();
 }

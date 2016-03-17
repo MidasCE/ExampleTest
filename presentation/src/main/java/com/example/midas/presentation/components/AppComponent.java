@@ -1,10 +1,9 @@
 package com.example.midas.presentation.components;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.example.midas.domain.executor.PostThread;
-import com.example.midas.domain.repository.User_InterfaceRepository;
+import com.example.midas.domain.repository.UserInterfaceRepository;
 import com.example.midas.presentation.module.AppModule;
 import com.example.midas.presentation.view.activity.BaseActivity;
 
@@ -21,5 +20,5 @@ public interface AppComponent {
     void inject(BaseActivity baseActivity);
     Context context();
     PostThread postThread();
-    User_InterfaceRepository userRepository();
+    UserInterfaceRepository userRepository();
 }
